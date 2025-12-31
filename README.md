@@ -1,3 +1,8 @@
+🚀 Creative Front-End / Web3 Developer I am obsessed with how it works—from pixel to protocol. 🔐 Logic: Crafting secure smart contracts via Solidity and Rust. ✨ Magic: Breathing life into web apps using React, GSAP, and Three.js. 🧠 Future: Blending deep AIML principles with decentralized tech. Built using React, Vite, Tailwind CSS.
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
