@@ -1,6 +1,6 @@
 import { Environment, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import * as THREE from 'three';
 import BitcoinModel from './BitcoinModel';
 import Lighting from './Lighting';
@@ -31,24 +31,6 @@ const Bitcoin3D: React.FC<Bitcoin3DProps> = ({
 }) => {
   const calculatedScale = size * 0.15;
   const canvasRef = useRef<HTMLDivElement>(null);
-  const [canvasHeight, setCanvasHeight] = useState(300);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (canvasRef.current) {
-        setCanvasHeight(canvasRef.current.clientHeight);
-      }
-    };
-
-    // Initial height calculation
-    handleResize();
-
-    // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <div ref={canvasRef} className={`${className}`} style={{ width: '100%', height: '400px' }}>
