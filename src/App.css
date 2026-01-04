@@ -1190,16 +1190,27 @@ body {
 @media (max-width: 768px) {
 
   /* ========================================
-     HEADER - Hide Navigation on Mobile
+     HEADER - Mobile Navigation (Compact)
      ======================================== */
   .ul-list {
-    display: none !important;
+    gap: 0.5rem;
+  }
+
+  .ul-list li {
+    padding: 0.35rem 0.6rem;
+  }
+
+  .ul-list li a {
+    font-size: 0.8rem;
+  }
+
+  .ul-list li i {
+    font-size: 0.75rem;
   }
 
   .div-list {
-    max-width: 160px !important;
-    padding: 0.5rem 0.8rem !important;
-    justify-content: space-between !important;
+    max-width: 480px;
+    padding: 0.4rem 0.6rem;
   }
 
   .theme-toggle {
@@ -1403,7 +1414,8 @@ body {
   width: 100%;
   overflow: hidden;
   position: relative;
-  padding: 2rem 0;
+  /* Increased padding to prevent card clipping from box-shadow and hover effects */
+  padding: 2.5rem 0 3rem;
   margin-top: 2rem;
 }
 
@@ -1432,7 +1444,11 @@ body {
 .carousel-track {
   display: flex;
   gap: 2rem;
-  width: fit-content;
+  width: max-content;
+  /* Hardware acceleration for smoother animation */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   animation: scroll-left 40s linear infinite;
 }
 
@@ -1680,76 +1696,7 @@ body {
   }
 }
 
-/* ============================================
-   INFINITE CAROUSEL SCROLL ANIMATION
-   ============================================ */
-
-.carousel-wrapper {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 2rem 0;
-  margin-top: 2rem;
-}
-
-/* Gradient overlays for smooth fade effect */
-.carousel-wrapper::before,
-.carousel-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 150px;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.carousel-wrapper::before {
-  left: 0;
-  background: linear-gradient(to right, var(--body-bg), transparent);
-}
-
-.carousel-wrapper::after {
-  right: 0;
-  background: linear-gradient(to left, var(--body-bg), transparent);
-}
-
-.carousel-track {
-  display: flex;
-  gap: 2rem;
-  width: fit-content;
-  animation: scroll-left 40s linear infinite;
-}
-
-/* Pause animation on hover */
-.carousel-track:hover {
-  animation-play-state: paused;
-}
-
-.carousel-card {
-  flex-shrink: 0;
-  width: 320px;
-  min-width: 320px;
-}
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Dark theme gradient overlays */
-[data-theme='dark'] .carousel-wrapper::before {
-  background: linear-gradient(to right, var(--body-bg), transparent);
-}
-
-[data-theme='dark'] .carousel-wrapper::after {
-  background: linear-gradient(to left, var(--body-bg), transparent);
-}
+/* Duplicate removed - using the first carousel definition above */
 
 /* Responsive carousel adjustments */
 @media (max-width: 768px) {
@@ -1790,11 +1737,28 @@ body {
   }
 
   /* ========================================
-     HEADER - Extra Small Screens
+     HEADER - Extra Small Screens (Compact Navigation)
      ======================================== */
   .div-list {
-    max-width: 140px !important;
-    padding: 0.4rem 0.6rem !important;
+    max-width: 100%;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .ul-list {
+    gap: 0.3rem;
+  }
+
+  .ul-list li {
+    padding: 0.3rem 0.5rem;
+  }
+
+  .ul-list li a {
+    font-size: 0.7rem;
+  }
+
+  .ul-list li i {
+    display: none;
+    /* Hide icons on very small screens to save space */
   }
 
   .header-list {

@@ -53,9 +53,23 @@ function App() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = loading ? 'hidden' : 'auto';
+    // During loading, hide overflow to prevent scrolling
+    // After loading, use 'scroll' instead of 'auto' to maintain consistent scrollbar space
+    // This prevents the layout shift / scrollbar flicker when transitioning
+    if (loading) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.overflowY = 'hidden';
+    } else {
+      // Small delay to ensure smooth transition without scrollbar flicker
+      const timer = window.setTimeout(() => {
+        document.body.style.overflow = '';
+        document.body.style.overflowY = '';
+      }, 50);
+      return () => window.clearTimeout(timer);
+    }
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
+      document.body.style.overflowY = '';
     };
   }, [loading]);
 
@@ -146,7 +160,7 @@ function App() {
         <Loader />
       ) : (
         <div id="main-page" className="main-page visible">
-          <Header 
+          <Header
             navItems={NAV_ITEMS}
             activeSection={activeSection}
             theme={theme}
@@ -158,12 +172,12 @@ function App() {
             <Hero />
 
             {/* Tech Stack Section */}
-            <div style={{ 
+            <div style={{
               width: '100%',
               padding: '2rem 0',
               margin: '0'
             }}>
-              <SimpleLogoLoop 
+              <SimpleLogoLoop
                 logos={[
                   { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', alt: 'React' },
                   { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', alt: 'TypeScript' },
@@ -176,7 +190,7 @@ function App() {
                 ]}
               />
             </div>
-            
+
             <About />
             <Project />
             {/* <Service /> */}
