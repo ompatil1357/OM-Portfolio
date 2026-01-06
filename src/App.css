@@ -10,6 +10,8 @@
   z-index: 1200;
   color: var(--text-primary);
   animation: backdropFadeIn 0.4s ease-out;
+  /* Prevent scrollbar flicker during loading animation */
+  overflow: hidden;
 }
 
 .loading-content {
@@ -514,51 +516,14 @@ section {
   max-width: 640px;
   color: #4f4f4f;
   line-height: 1.8;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
-.projects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2.2rem;
-}
-
-.project-card {
-  background: #ffffff;
-  border-radius: 22px;
-  border: 1px solid rgba(17, 17, 17, 0.12);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 1.6rem 1.6rem 1.8rem;
-  gap: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08);
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
-}
-
-.project-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 16px;
-}
-
-.project-card h3 {
-  font-size: 1.2rem;
-  margin: 0;
-  color: var(--text-primary);
-}
-
-.project-card p {
-  color: #565656;
-  flex: 1;
-  margin: 0;
-}
+/* 
+ * NOTE: .project-card and .projects-grid styles are defined in the 
+ * "PROJECTS GRID LAYOUT" section below (around line 1400+).
+ * Skills and button styles kept here as they're used across components.
+ */
 
 .skills {
   display: flex;
@@ -597,49 +562,6 @@ section {
 .btns .btn:hover {
   background: #1b1b1b;
   transform: translateY(-3px);
-}
-
-
-
-/* general styles */
-
-/* :root {
-  --clr-neutral-100: hsl(0, 0%, 100%);
-  --clr-primary-100: hsl(205, 15%, 58%);
-  --clr-primary-400: hsl(215, 25%, 27%);
-  --clr-primary-800: hsl(217, 33%, 17%);
-  --clr-primary-900: hsl(218, 33%, 9%);
-/* } */
-
-html {
-  color-scheme: dark;
-}
-
-body {
-  display: grid;
-  min-block-size: 100vh;
-  place-content: center;
-
-  font-size: 1.125rem;
-  background-color: var(--clr-primary-800);
-}
-
-.tag-list {
-  margin: 0;
-  padding-inline: 0;
-  list-style: none;
-}
-
-.tag-list li {
-  padding: 1rem;
-  background: var(--clr-primary-400);
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem -0.25rem var(--clr-primary-900);
-}
-
-/* for testing purposed to ensure the animation lined up correctly */
-.test {
-  background: red !important;
 }
 
 .service-card {
@@ -1407,88 +1329,144 @@ body {
 }
 
 /* ============================================
-   INFINITE CAROUSEL SCROLL ANIMATION
+   PROJECTS GRID LAYOUT - STATIC DISPLAY
    ============================================ */
 
-.carousel-wrapper {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  /* Increased padding to prevent card clipping from box-shadow and hover effects */
-  padding: 2.5rem 0 3rem;
-  margin-top: 2rem;
-}
-
-/* Gradient overlays for smooth fade effect */
-.carousel-wrapper::before,
-.carousel-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 150px;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.carousel-wrapper::before {
-  left: 0;
-  background: linear-gradient(to right, var(--body-bg), transparent);
-}
-
-.carousel-wrapper::after {
-  right: 0;
-  background: linear-gradient(to left, var(--body-bg), transparent);
-}
-
-.carousel-track {
-  display: flex;
+/* 
+ * Projects Grid Container
+ * - Responsive grid layout (auto-adjusts columns based on screen size)
+ * - Proper spacing and padding
+ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  width: max-content;
-  /* Hardware acceleration for smoother animation */
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  animation: scroll-left 40s linear infinite;
+  padding: 2rem 0;
+  margin-top: 1rem;
 }
 
-/* Pause animation on hover */
-.carousel-track:hover {
-  animation-play-state: paused;
+/*
+ * Project Card Styling
+ * - Clean, modern card design
+ * - Enhanced hover effects with smooth transitions
+ */
+.project-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+  /* Smooth transition for hover effects */
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.35s ease;
+  /* Base shadow */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
-.carousel-card {
-  flex-shrink: 0;
-  width: 320px;
-  min-width: 320px;
+/* Project card hover effect - elevate and glow */
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.08);
+  border-color: rgba(17, 17, 17, 0.2);
 }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
+/* Project image container */
+.project-card .project-image {
+  border-radius: 14px;
+  overflow: hidden;
+  margin: -0.5rem -0.5rem 0.5rem -0.5rem;
 }
 
-/* Dark theme gradient overlays */
-[data-theme='dark'] .carousel-wrapper::before {
-  background: linear-gradient(to right, var(--body-bg), transparent);
+.project-card .project-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-[data-theme='dark'] .carousel-wrapper::after {
-  background: linear-gradient(to left, var(--body-bg), transparent);
+/* Image zoom on card hover */
+.project-card:hover .project-image img {
+  transform: scale(1.05);
 }
 
-/* Responsive carousel adjustments */
+/* Project title */
+.project-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.project-card:hover h3 {
+  color: var(--primary);
+}
+
+/* Project description */
+.project-card p {
+  color: #666666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+/* Dark theme project cards */
+[data-theme='dark'] .project-card {
+  background: rgba(20, 20, 25, 0.9);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .project-card:hover {
+  border-color: rgba(107, 111, 255, 0.4);
+  box-shadow: 0 20px 40px rgba(107, 111, 255, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .project-card p {
+  color: var(--text-secondary);
+}
+
+/* Responsive adjustments for projects grid */
 @media (max-width: 768px) {
-  .carousel-card {
-    width: 280px;
-    min-width: 280px;
-    border-color: rgba(107, 111, 255, 0.6);
-    box-shadow: 0 0 0 4px rgba(107, 111, 255, 0.2);
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+
+  .project-card {
+    padding: 1.25rem;
+  }
+
+  .project-card .project-image img {
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1rem 0;
+  }
+
+  .project-card {
+    padding: 1rem;
+  }
+
+  .project-card .project-image img {
+    height: 140px;
+  }
+
+  .project-card h3 {
+    font-size: 1.05rem;
   }
 }
 
@@ -1649,16 +1627,6 @@ body {
   .footer-links {
     gap: 1rem;
   }
-
-  .carousel-track {
-    gap: 1.5rem;
-    animation: scroll-left 30s linear infinite;
-  }
-
-  .carousel-wrapper::before,
-  .carousel-wrapper::after {
-    width: 80px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -1696,45 +1664,10 @@ body {
   }
 }
 
-/* Duplicate removed - using the first carousel definition above */
-
-/* Responsive carousel adjustments */
-@media (max-width: 768px) {
-  .carousel-card {
-    width: 280px;
-    min-width: 280px;
-  }
-
-  .carousel-track {
-    gap: 1.5rem;
-    animation: scroll-left 30s linear infinite;
-  }
-
-  .carousel-wrapper::before,
-  .carousel-wrapper::after {
-    width: 80px;
-  }
-}
-
+/* ========================================
+   EXTRA SMALL SCREENS (480px and below)
+   ======================================== */
 @media (max-width: 480px) {
-
-  /* ========================================
-     CAROUSEL - Extra Small Screens
-     ======================================== */
-  .carousel-card {
-    width: 260px;
-    min-width: 260px;
-  }
-
-  .carousel-track {
-    gap: 1rem;
-    animation: scroll-left 25s linear infinite;
-  }
-
-  .carousel-wrapper::before,
-  .carousel-wrapper::after {
-    width: 40px;
-  }
 
   /* ========================================
      HEADER - Extra Small Screens (Compact Navigation)
@@ -1941,7 +1874,12 @@ body {
 
 /* Accessibility: Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .carousel-track {
-    animation: none;
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

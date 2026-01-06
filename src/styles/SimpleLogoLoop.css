@@ -1,3 +1,19 @@
+/**
+ * SimpleLogoLoop Component Styles
+ * 
+ * INFINITE SCROLL MECHANISM:
+ * - The logo track contains logos duplicated 2x (original + 1 copy)
+ * - Animation translates exactly -50% of track width
+ * - When animation reaches -50%, it seamlessly loops back to 0%
+ * - The "seam" is invisible because the second half is identical to the first
+ * 
+ * For truly smooth infinite scroll:
+ * - Use transform: translate3d for GPU acceleration
+ * - Use will-change: transform for optimization
+ * - Ensure the animation timing-function is 'linear'
+ * - The -50% translation MUST equal exactly one set of logos
+ */
+
 .logo-loop-container {
     width: 100%;
     overflow: hidden;
@@ -8,9 +24,14 @@
 .logo-loop-track {
     display: flex;
     gap: 4rem;
-    animation: scroll 30s linear infinite;
-    width: fit-content;
+    /* Use max-content instead of fit-content for more reliable sizing */
+    width: max-content;
+    /* Hardware acceleration for smooth animation */
     will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    /* Linear timing for constant speed - critical for seamless looping */
+    animation: logo-scroll 30s linear infinite;
 }
 
 .logo-loop-track:hover {
@@ -34,8 +55,6 @@
     width: auto;
     object-fit: contain;
     display: block;
-    /* filter: grayscale(2%); */
-    /* opacity: 0.7; */
     transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
@@ -44,13 +63,19 @@
     filter: grayscale(0%);
 }
 
-@keyframes scroll {
+/**
+ * CRITICAL: The animation translates exactly -50% of the track width.
+ * Since logos are duplicated (2x), -50% = width of original logos.
+ * When it reaches -50%, it jumps back to 0%, creating seamless illusion.
+ */
+@keyframes logo-scroll {
     0% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 
     100% {
-        transform: translateX(-50%);
+        /* Translate exactly half the track width (where the duplicate begins) */
+        transform: translate3d(-50%, 0, 0);
     }
 }
 
@@ -74,5 +99,12 @@
 
     .logo-item img {
         height: 36px;
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .logo-loop-track {
+        animation: none;
     }
 }

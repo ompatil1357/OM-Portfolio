@@ -71,6 +71,11 @@
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: dark light;
+  /* Support both themes properly */
+}
+
 html,
 body {
   min-height: 100%;
@@ -79,8 +84,10 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   /* Hide scrollbar completely to prevent flicker on page reload */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  /* -ms-overflow-style: none; */
+  /* IE and Edge */
   width: 100%;
   max-width: 100%;
 }
