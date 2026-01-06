@@ -7,6 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amine Portfolio</title>
   <meta name="description" content="Portfolio website showcasing Amine's frontend development work and services." />
+
+  <!-- Critical inline CSS - loads synchronously to prevent scrollbar flicker -->
+  <style>
+    html,
+    body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+  </style>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
