@@ -27,9 +27,14 @@ const socialLinks = [
     ariaLabel: 'LinkedIn',
   },
   {
-    href: 'https://www.instagram.com/omi.flexion/?hl=en',
-    icon: 'fa-brands fa-whatsapp',
-    ariaLabel: 'WhatsApp',
+    href: 'https://x.com/Cryptonary_web3',
+    icon: 'fa-brands fa-x-twitter',
+    ariaLabel: 'twitter',
+  },
+    {
+    href: 'https://www.instagram.com/omi.flexion/',
+    icon: 'fa-brands fa-instagram',
+    ariaLabel: 'instagram',
   },
 ];
 

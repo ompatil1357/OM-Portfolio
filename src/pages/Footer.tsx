@@ -18,9 +18,9 @@ const socialLinks = [
     ariaLabel: 'LinkedIn',
   },
   {
-    href: 'https://x.com/ompatil1357',
-    icon: 'fa-brands fa-whatsapp',
-    ariaLabel: 'WhatsApp',
+    href: 'https://x.com/Cryptonary_web3',
+    icon: 'fa-brands fa-x-twitter',
+    ariaLabel: 'X',
   },
 ];
 

@@ -30,19 +30,19 @@ export const projects: ProjectItem[] = [
     title: 'Portfolio Website',
     description: 'Personal portfolio to showcase my design and coding projects.',
     image: '/images/OmPortfolio.PNG', // Direct URL reference to public folder asset
-    tags: ['React', 'Tailwind CSS', 'Three.js'],
+    tags: ['React', 'Gsap', 'Three.js'],
     // TODO: Replace with your actual GitHub repo URL
     github: 'https://github.com/YOUR_USERNAME/portfolio-website',
     // TODO: Replace with your actual live demo URL
     demo: 'https://your-portfolio-demo.vercel.app',
   },
   {
-    title: 'Weather App',
-    description: 'Responsive app showing real-time weather data using API integration.',
+    title: 'Fluent-Flow',
+    description: 'Responsive website for a language learning platform with modern UI and animations',
     image: '/images/Weather Forecast Dashboard.jpg', // Direct URL reference to public folder asset
-    tags: ['HTML', 'CSS', 'API'],
+    tags: ['React', 'Trypescript', 'API'],
     // TODO: Replace with your actual GitHub repo URL
-    github: 'https://github.com/YOUR_USERNAME/weather-app',
+    github: 'https://github.com/ompatil1357/Fluent-flow-master',
     // TODO: Replace with your actual live demo URL
     demo: 'https://your-weather-app-demo.vercel.app',
   },

@@ -10,9 +10,9 @@ const socialLinks = [
     ariaLabel: 'GitHub',
   },
   {
-    href: 'https://discord.com',
-    icon: 'fa-brands fa-discord',
-    ariaLabel: 'Discord',
+    href: 'https://x.com/Cryptonary_web3',
+    icon: 'fa-brands fa-x-twitter',
+    ariaLabel: 'twitter',
   },
   {
     href: 'https://www.linkedin.com/in/om-patil-579748316/',
