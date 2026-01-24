@@ -1,4 +1,4 @@
-import aboutImage from '/images/img.jpg';
+import aboutImage from '/images/Om-img.png';
 
 const aboutData = [
   {

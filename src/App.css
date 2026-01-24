@@ -556,7 +556,7 @@ section {
   width: min(420px, 100%);
   border-radius: 26px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.35);
+  /* box-shadow: 0 26px 55px rgba(0, 0, 0, 0.35); */
 }
 
 .about-image img:hover {
