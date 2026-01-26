@@ -17,19 +17,19 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
-    title: 'Auth Master Website ',
-    description: 'Secure MERN Auth & Profiles with JWT, cookies, and dynamic themes using Tailwind + DaisyUI. 🔐✨',
-    image: '/images/Cleveroad.jpg', // Direct URL reference to public folder asset
-    tags: ['Next.js', 'Tailwind CSS', 'MongoDB'],
+    title: 'Escrow-System Startup ',
+    description: 'A web application for secure transactions between buyers and sellers.',
+    image: '/images/escrow.png', // Direct URL reference to public folder asset
+    tags: ['React', 'Razorpay', 'PostgreSQL'],
     // TODO: Replace with your actual GitHub repo URL
     github: 'https://github.com/ompatil1357/Auth-master',
     // TODO: Replace with your actual live demo URL
-    demo: 'https://your-ecommerce-demo.vercel.app',
+    demo: 'https://escrowwall.online/',
   },
   {
     title: 'Portfolio Website',
     description: 'Personal portfolio to showcase my design and coding projects.',
-    image: '/images/OmPortfolio.PNG', // Direct URL reference to public folder asset
+    image: '/images/omi-crop-port.png', // Direct URL reference to public folder asset
     tags: ['React', 'Gsap', 'Three.js'],
     // TODO: Replace with your actual GitHub repo URL
     github: 'https://github.com/YOUR_USERNAME/portfolio-website',
